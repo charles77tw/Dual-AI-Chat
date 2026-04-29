@@ -1,6 +1,6 @@
 {
   "name": "Dual AI Chat",
-  "description": "一个聊天应用程序，用户的消息由两个 AI 模型（Cognito 和 Muse）进行讨论。具有一个共享记事本，两个 AI 都可以读取和写入，并显示整个对话和记事本的更改。",
+  "description": "一個聊天應用程序，用戶的消息由兩個 AI 模型（Cognito 和 Muse）進行討論。具有一個共享記事本，兩個 AI 都可以讀取和寫入，並顯示整個對話和記事本的變更。",
   "requestFramePermissions": [],
   "prompt": ""
 }
