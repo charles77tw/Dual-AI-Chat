@@ -64,7 +64,7 @@ export const ThinkingControl: React.FC<ThinkingControlProps> = ({
   if (!showThinkingControls) return (
     <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 border-dashed text-center">
         <p className="text-xs text-slate-400">
-            所选模型不支持思考配置。
+            所選模型不支援思考配置。
         </p>
     </div>
   );
@@ -77,11 +77,11 @@ export const ThinkingControl: React.FC<ThinkingControlProps> = ({
             <div className="flex justify-between items-center mb-3">
                 <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
                     <Cpu size={16} className="text-sky-500" strokeWidth={2} />
-                    思考过程
+                    思考過程
                 </label>
                 {mode !== 'off' && (
                     <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-sky-50 text-sky-600 border border-sky-100">
-                        {isGemini3 ? 'Gemini 3.0 逻辑' : '思考已启用'}
+                        {isGemini3 ? 'Gemini 3.0 邏輯' : '思考已啟用'}
                     </span>
                 )}
             </div>
@@ -97,7 +97,7 @@ export const ThinkingControl: React.FC<ThinkingControlProps> = ({
                     }`}
                 >
                     <Sparkles size={14} className={mode === 'auto' ? 'text-sky-500' : 'opacity-70'} />
-                    {isGemini3 ? '预设' : '自动'}
+                    {isGemini3 ? '預設' : '自動'}
                 </button>
 
                 <button
@@ -121,7 +121,7 @@ export const ThinkingControl: React.FC<ThinkingControlProps> = ({
                     }`}
                 >
                     <Ban size={14} className={mode === 'off' ? 'text-red-500' : 'opacity-70'} />
-                    关闭
+                    關閉
                 </button>
             </div>
 
@@ -133,7 +133,7 @@ export const ThinkingControl: React.FC<ThinkingControlProps> = ({
                         <div className="flex flex-col gap-3">
                             <div className="flex items-center justify-between">
                                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                                    <Gauge size={12} /> 强度级别
+                                    <Gauge size={12} /> 強度級別
                                 </span>
                             </div>
                             <div className="flex gap-3">
@@ -141,14 +141,14 @@ export const ThinkingControl: React.FC<ThinkingControlProps> = ({
                                     active={thinkingLevel === 'LOW'} 
                                     onClick={() => setThinkingLevel('LOW')} 
                                     label="低" 
-                                    desc="较快"
+                                    desc="較快"
                                     icon={<Zap size={14} />}
                                 />
                                 <LevelButton 
                                     active={thinkingLevel === 'HIGH'} 
                                     onClick={() => setThinkingLevel('HIGH')} 
                                     label="高" 
-                                    desc="较深"
+                                    desc="較深"
                                     icon={<Cpu size={14} />}
                                 />
                             </div>
@@ -159,7 +159,7 @@ export const ThinkingControl: React.FC<ThinkingControlProps> = ({
                         <div className="space-y-3">
                             <div className="flex items-center justify-between">
                                 <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                                    <Calculator size={12} /> Token 预算
+                                    <Calculator size={12} /> Token 預算
                                 </label>
                                 <span className="text-xs font-mono text-sky-600 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">
                                     {parseInt(customBudgetValue).toLocaleString()} tokens
@@ -192,7 +192,7 @@ export const ThinkingControl: React.FC<ThinkingControlProps> = ({
                     {mode === 'off' && (
                         <div className="flex items-center justify-center py-1">
                             <p className="text-xs text-slate-400 italic flex items-center gap-2">
-                                思考过程已禁用。
+                                思考過程已禁用。
                             </p>
                         </div>
                     )}
