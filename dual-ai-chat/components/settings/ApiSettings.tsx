@@ -136,13 +136,13 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({
         isActive={isDefaultActive}
         onToggle={handleDefaultClick}
         icon={CloudLightning}
-        title="标准 Google Gemini"
-        description="使用环境变量中配置的 API 密钥。"
+        title="標準 Google Gemini"
+        description="使用環境變數中配置的 API 金鑰。"
         colorClass="emerald"
       >
          <div className="flex items-center space-x-2 text-emerald-700 text-sm p-2 bg-emerald-50 rounded-md border border-emerald-100">
             <ShieldCheck size={16} />
-            <span className="font-medium">正在使用系统环境变量</span>
+            <span className="font-medium">正在使用系統環境變數</span>
          </div>
       </ProviderCard>
 
@@ -151,12 +151,12 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({
         isActive={useCustomApiConfig}
         onToggle={() => !isLoading && onUseCustomApiConfigChange()}
         icon={Globe}
-        title="自定义 Gemini API"
-        description="连接到自定义代理或 Google Vertex AI 端点。"
+        title="自定義 Gemini API"
+        description="連線到自訂代理程式或 Google Vertex AI 端點。"
         colorClass="sky"
       >
-        <InputGroup label="API 端点 (Base URL)" icon={Globe} value={customApiEndpoint} onChange={onCustomApiEndpointChange} placeholder="https://generativelanguage.googleapis.com" disabled={isLoading} />
-        <InputGroup label="API 密钥" icon={KeyRound} value={customApiKey} onChange={onCustomApiKeyChange} placeholder="AIzaSy..." disabled={isLoading} type="password" />
+        <InputGroup label="API 端點 (Base URL)" icon={Globe} value={customApiEndpoint} onChange={onCustomApiEndpointChange} placeholder="https://generativelanguage.googleapis.com" disabled={isLoading} />
+        <InputGroup label="API 金鑰" icon={KeyRound} value={customApiKey} onChange={onCustomApiKeyChange} placeholder="AIzaSy..." disabled={isLoading} type="password" />
       </ProviderCard>
 
       {/* 3. OpenAI Compatible */}
@@ -164,16 +164,16 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({
         isActive={useOpenAiApiConfig}
         onToggle={() => !isLoading && onUseOpenAiApiConfigChange()}
         icon={Database}
-        title="OpenAI 兼容接口"
-        description="连接到 Ollama, LM Studio 或 OpenAI。支持任意模型 ID。"
+        title="OpenAI 相容介面"
+        description="連接到 Ollama, LM Studio 或 OpenAI。支援任意模型 ID。"
         colorClass="indigo"
       >
         <div className="grid grid-cols-1 gap-4">
-             <InputGroup label="API 基地址" icon={Globe} value={openAiApiBaseUrl} onChange={onOpenAiApiBaseUrlChange} placeholder="http://localhost:11434/v1" disabled={isLoading} />
-             <InputGroup label="API 密钥" icon={KeyRound} value={openAiApiKey} onChange={onOpenAiApiKeyChange} placeholder="sk-..." disabled={isLoading} type="password" />
+             <InputGroup label="API 基底位址" icon={Globe} value={openAiApiBaseUrl} onChange={onOpenAiApiBaseUrlChange} placeholder="http://localhost:11434/v1" disabled={isLoading} />
+             <InputGroup label="API 金鑰" icon={KeyRound} value={openAiApiKey} onChange={onOpenAiApiKeyChange} placeholder="sk-..." disabled={isLoading} type="password" />
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                <InputGroup label="Cognito 模型 ID" icon={Cpu} value={openAiCognitoModelId} onChange={onOpenAiCognitoModelIdChange} placeholder="gpt-4o, llama3" disabled={isLoading} helper="逻辑模型" />
-                <InputGroup label="Muse 模型 ID" icon={Sparkles} value={openAiMuseModelId} onChange={onOpenAiMuseModelIdChange} placeholder="gpt-3.5-turbo" disabled={isLoading} helper="创意模型" />
+                <InputGroup label="Cognito 模型 ID" icon={Cpu} value={openAiCognitoModelId} onChange={onOpenAiCognitoModelIdChange} placeholder="gpt-4o, llama3" disabled={isLoading} helper="邏輯模型" />
+                <InputGroup label="Muse 模型 ID" icon={Sparkles} value={openAiMuseModelId} onChange={onOpenAiMuseModelIdChange} placeholder="gpt-3.5-turbo" disabled={isLoading} helper="創意模型" />
              </div>
         </div>
       </ProviderCard>
