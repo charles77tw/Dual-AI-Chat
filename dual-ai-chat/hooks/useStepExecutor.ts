@@ -114,7 +114,7 @@ export const useStepExecutor = ({
     );
 
     while (autoRetryCount <= MAX_AUTO_RETRIES && !stepSuccess) {
-      if (state.cancelRequestRef.current) throw new Error("用户取消操作");
+      if (state.cancelRequestRef.current) throw new Error("使用者取消操作");
       try {
         let result: { text: string; durationMs: number; error?: string; thoughts?: string };
         const currentOpenAiModelId = modelDetailsForStep.apiName;
@@ -145,11 +145,11 @@ export const useStepExecutor = ({
           );
         }
 
-        if (state.cancelRequestRef.current) throw new Error("用户取消操作");
+        if (state.cancelRequestRef.current) throw new Error("使用者取消操作");
 
         if (result.error) {
           // Check specifically for AbortError string returned from services
-          if (result.error === 'AbortError' || result.text === '用户取消操作') {
+          if (result.error === 'AbortError' || result.text === '使用者取消操作') {
              throw new Error("用户取消操作");
           }
 
@@ -161,7 +161,7 @@ export const useStepExecutor = ({
             setGlobalApiKeyStatus({ isInvalid: true, message: result.text });
             throw new Error(result.text);
           }
-          throw new Error(result.text || "AI 响应错误");
+          throw new Error(result.text || "AI 回應錯誤");
         }
         setGlobalApiKeyStatus({ isMissing: false, isInvalid: false, message: undefined });
         parsedResponse = parseAIResponse(result.text);
@@ -174,20 +174,20 @@ export const useStepExecutor = ({
         const error = e as Error;
         
         // IMMEDIATE CANCELLATION CHECK
-        if (state.cancelRequestRef.current || error.name === 'AbortError' || error.message === '用户取消操作') {
+        if (state.cancelRequestRef.current || error.name === 'AbortError' || error.message === '使用者取消操作') {
            // Prevent any retries and rethrow to exit loop immediately
-           throw new Error("用户取消操作");
+           throw new Error("使用者取消操作");
         }
 
-        if (error.message.includes("API密钥") || error.message.toLowerCase().includes("api key")) {
+        if (error.message.includes("API金鑰") || error.message.toLowerCase().includes("api key")) {
           throw error;
         }
 
         if (autoRetryCount < MAX_AUTO_RETRIES) {
-          addMessage(`[${senderForStep} - ${stepIdentifier}] 调用失败，重试 (${autoRetryCount + 1}/${MAX_AUTO_RETRIES})... ${error.message}`, MessageSender.System, MessagePurpose.SystemNotification);
+          addMessage(`[${senderForStep} - ${stepIdentifier}] 呼叫失敗，重試 (${autoRetryCount + 1}/${MAX_AUTO_RETRIES})... ${error.message}`, MessageSender.System, MessagePurpose.SystemNotification);
           await new Promise(resolve => setTimeout(resolve, RETRY_DELAY_BASE_MS * (autoRetryCount + 1)));
         } else {
-          const errorMsgId = addMessage(`[${senderForStep} - ${stepIdentifier}] 在 ${MAX_AUTO_RETRIES + 1} 次尝试后失败: ${error.message} 可手动重试。`, MessageSender.System, MessagePurpose.SystemNotification);
+          const errorMsgId = addMessage(`[${senderForStep} - ${stepIdentifier}] 在 ${MAX_AUTO_RETRIES + 1} 次嘗試後失敗: ${error.message} 可手動重試。`, MessageSender.System, MessagePurpose.SystemNotification);
 
           // Prepare config for retry payload
           let thinkingConfigForPayload: any = undefined;
@@ -221,7 +221,7 @@ export const useStepExecutor = ({
     }
     if (!parsedResponse) {
       state.setIsInternalDiscussionActive(false);
-      throw new Error("AI响应处理失败");
+      throw new Error("AI回應處理失敗");
     }
     return parsedResponse;
   }, [
