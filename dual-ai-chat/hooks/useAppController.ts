@@ -113,20 +113,20 @@ export const useAppController = (panelsContainerRef: React.RefObject<HTMLDivElem
     let missingKeyMsg = "";
     if (settings.useOpenAiApiConfig) {
       if (!settings.openAiApiBaseUrl.trim() || !settings.openAiCognitoModelId.trim() || !settings.openAiMuseModelId.trim()) {
-        missingKeyMsg = "OpenAI API 配置不完整 (需要基地址和Cognito/Muse的模型ID)。请在设置中提供，或关闭“使用OpenAI API配置”。";
+        missingKeyMsg = "OpenAI API 設定不完整 (需要基底位址和Cognito/Muse的模型ID)。請在設定中提供，或關閉「使用OpenAI API配置”。";
       }
     } else if (settings.useCustomApiConfig) {
       if (!settings.customApiKey.trim()) {
-        missingKeyMsg = "自定义 Gemini API 密钥未在设置中提供。请在设置中输入密钥，或关闭“使用自定义API配置”。";
+        missingKeyMsg = "自訂 Gemini API 金鑰未在設定中提供。請在設定中輸入金鑰，或關閉「使用自訂API配置”。";
       }
     } else {
       if (!(process.env.API_KEY && process.env.API_KEY.trim() !== "")) {
-        missingKeyMsg = "Google Gemini API 密钥未在环境变量中配置。请配置该密钥，或在设置中启用并提供自定义API配置。";
+        missingKeyMsg = "Google Gemini API 金鑰未在環境變數中配置。請配置該金鑰，或在設定中啟用並提供自訂API配置。";
       }
     }
 
     if (missingKeyMsg) {
-      const fullWarning = `严重警告：${missingKeyMsg} 在此之前，应用程序功能将受限。`;
+      const fullWarning = `嚴重警告：${missingKeyMsg} 在此之前，應用程式功能將受限。`;
       addMessage(fullWarning, MessageSender.System, MessagePurpose.SystemNotification);
       setApiKeyStatus({ isMissing: true, message: missingKeyMsg });
     } else {
@@ -227,14 +227,14 @@ export const useAppController = (panelsContainerRef: React.RefObject<HTMLDivElem
   const apiKeyBannerMessage = useMemo(() => {
     if (!apiKeyStatus.message) return null;
     if (settings.useOpenAiApiConfig) {
-      if (apiKeyStatus.isMissing) return "OpenAI API 配置不完整 (需基地址和Cognito/Muse模型ID)。请在设置中提供，或关闭 OpenAI API 配置。";
-      if (apiKeyStatus.isInvalid) return "提供的 OpenAI API 密钥无效或无法访问服务。请检查设置和网络。";
+      if (apiKeyStatus.isMissing) return "OpenAI API 設定不完整 (需基底位址和Cognito/Muse模型ID)。請在設定中提供，或關閉 OpenAI API 配置。";
+      if (apiKeyStatus.isInvalid) return "提供的 OpenAI API 金鑰無效或無法存取服務。請檢查設定和網絡。";
     } else if (settings.useCustomApiConfig) {
-      if (apiKeyStatus.isMissing) return "自定义 Gemini API 密钥缺失。请在设置中提供，或关闭自定义 Gemini API 配置。";
-      if (apiKeyStatus.isInvalid) return "提供的自定义 Gemini API 密钥无效或权限不足。请检查设置中的密钥。";
+      if (apiKeyStatus.isMissing) return "自訂 Gemini API 金鑰缺失。請在設定中提供，或關閉自訂 Gemini API 配置。";
+      if (apiKeyStatus.isInvalid) return "提供的自訂 Gemini API 金鑰無效或權限不足。請檢查設定中的密鑰。";
     } else {
-      if (apiKeyStatus.isMissing) return "环境变量中的 Google Gemini API 密钥缺失。请配置，或启用自定义 API 配置。";
-      if (apiKeyStatus.isInvalid) return "环境变量中的 Google Gemini API 密钥无效或权限不足。请检查该密钥。";
+      if (apiKeyStatus.isMissing) return "環境變數中的 Google Gemini API 金鑰缺失。請配置，或啟用自訂 API 配置。";
+      if (apiKeyStatus.isInvalid) return "環境變數中的 Google Gemini API 金鑰無效或權限不足。請檢查該密鑰。";
     }
     return apiKeyStatus.message;
   }, [apiKeyStatus, settings.useCustomApiConfig, settings.useOpenAiApiConfig]);
