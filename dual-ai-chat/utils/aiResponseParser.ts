@@ -72,19 +72,19 @@ export const parseAIResponse = (responseText: string): ParsedAIResponse => {
   }
 
   // Construct status text for the UI based on actions found
-  let notepadActionText = notepadModifications.length > 0 ? `修改了记事本 (${notepadModifications.length} 项操作)` : "";
-  let discussionActionText = discussionShouldEnd ? "建议结束讨论" : "";
+  let notepadActionText = notepadModifications.length > 0 ? `修改了記事本 (${notepadModifications.length} 項操作)` : "";
+  let discussionActionText = discussionShouldEnd ? "建議結束討論" : "";
 
   // Handle empty spoken text scenarios (AI only performed actions)
   if (!spokenText.trim()) {
     if (notepadActionText && discussionActionText) {
-      spokenText = `(AI ${notepadActionText}并${discussionActionText})`;
+      spokenText = `(AI ${notepadActionText}並${discussionActionText})`;
     } else if (notepadActionText) {
       spokenText = `(AI ${notepadActionText})`;
     } else if (discussionActionText) {
       spokenText = `(AI ${discussionActionText})`;
     } else if (!parsingError) {
-       spokenText = "(AI 未提供额外文本回复)";
+       spokenText = "(AI 未提供額外文字回覆)";
     }
   }
 
