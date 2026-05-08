@@ -118,7 +118,7 @@ const App: React.FC = () => {
               <div className={`p-1 rounded-lg ${ui.activeMobileTab === 'notepad' ? 'bg-sky-50' : 'bg-transparent'}`}>
                 <FileText size={20} className={ui.activeMobileTab === 'notepad' ? 'fill-sky-600/20' : ''} />
               </div>
-              <span className="text-[10px] font-medium">记事本</span>
+              <span className="text-[10px] font-medium">記事本</span>
            </button>
         </div>
       )}
