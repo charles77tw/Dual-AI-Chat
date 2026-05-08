@@ -83,7 +83,7 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
             : `${themeColors.hoverBorder} border-slate-200 hover:shadow-md active:scale-[0.98] ${themeColors.ring} focus:ring-2`
           }
         `}
-        title={`选择 ${label} 模型`}
+        title={`選擇 ${label} 模型`}
       >
          <div className={`p-1 rounded-md ${themeColors.iconBg} ${themeColors.iconColor} transition-transform group-hover:scale-105 duration-200`}>
             <Icon size={14} strokeWidth={2.5} />
