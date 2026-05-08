@@ -15,7 +15,7 @@ const ResizeHandle: React.FC<ResizeHandleProps> = ({ onMouseDown, onKeyDown }) =
       onKeyDown={onKeyDown}
       role="separator"
       tabIndex={0}
-      title="拖动调整大小"
+      title="拖曳調整大小"
     >
        <div className="w-px h-full bg-slate-200 group-hover:bg-sky-400 transition-colors duration-200"></div>
     </div>
