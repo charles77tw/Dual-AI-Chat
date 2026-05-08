@@ -64,7 +64,7 @@ export const useRetryLogic = ({
       localPreviousAISignaledStop = true;
     }
 
-    const imageInstructionForAI = imageApiPartForFlow ? "用户还提供了一张图片。请在您的分析和回复中同时考虑此图片和文本查询。" : "";
+    const imageInstructionForAI = imageApiPartForFlow ? "用戶還提供了一張圖片。請在您的分析和回覆中同時考慮此圖片和文字查詢。" : "";
 
     let initialLoopTurn = 0;
     let skipMuseInFirstIteration = false;
@@ -73,27 +73,27 @@ export const useRetryLogic = ({
       initialLoopTurn = 0;
       setIsInternalDiscussionActive(true);
       setCurrentDiscussionTurn(0);
-      if (localPreviousAISignaledStop) addMessage(`${MessageSender.Cognito} 已建议结束讨论。等待 ${MessageSender.Muse} 的回应。`, MessageSender.System, MessagePurpose.SystemNotification);
+      if (localPreviousAISignaledStop) addMessage(`${MessageSender.Cognito} 已建議結束討論。等待 ${MessageSender.Muse} 的回應。`, MessageSender.System, MessagePurpose.SystemNotification);
     } else if (retriedStepId.startsWith('muse-reply-to-cognito-turn-')) {
       initialLoopTurn = retriedStepPayload.currentTurnIndexForResume ?? 0;
       setIsInternalDiscussionActive(true);
       setCurrentDiscussionTurn(initialLoopTurn);
       skipMuseInFirstIteration = true;
       if (discussionMode === DiscussionMode.AiDriven && localPreviousAISignaledStop && retriedStepPayload.previousAISignaledStopForResume) {
-        addMessage(`双方AI (${MessageSender.Cognito} 和 ${MessageSender.Muse}) 已同意结束讨论。`, MessageSender.System, MessagePurpose.SystemNotification);
+        addMessage(`雙方AI (${MessageSender.Cognito} 和 ${MessageSender.Muse}) 已同意結束討論。`, MessageSender.System, MessagePurpose.SystemNotification);
         setIsInternalDiscussionActive(false);
       } else if (discussionMode === DiscussionMode.AiDriven && localPreviousAISignaledStop) {
-        addMessage(`${MessageSender.Muse} 已建议结束讨论。等待 ${MessageSender.Cognito} 的回应。`, MessageSender.System, MessagePurpose.SystemNotification);
+        addMessage(`${MessageSender.Muse} 已建議結束討論。等待 ${MessageSender.Cognito} 的回應。`, MessageSender.System, MessagePurpose.SystemNotification);
       }
     } else if (retriedStepId.startsWith('cognito-reply-to-muse-turn-')) {
       initialLoopTurn = (retriedStepPayload.currentTurnIndexForResume ?? 0) + 1;
       setIsInternalDiscussionActive(true);
       setCurrentDiscussionTurn(initialLoopTurn);
       if (discussionMode === DiscussionMode.AiDriven && localPreviousAISignaledStop && retriedStepPayload.previousAISignaledStopForResume) {
-        addMessage(`双方AI (${MessageSender.Muse} 和 ${MessageSender.Cognito}) 已同意结束讨论。`, MessageSender.System, MessagePurpose.SystemNotification);
+        addMessage(`雙方AI (${MessageSender.Muse} 和 ${MessageSender.Cognito}) 已同意結束討論。`, MessageSender.System, MessagePurpose.SystemNotification);
         setIsInternalDiscussionActive(false);
       } else if (discussionMode === DiscussionMode.AiDriven && localPreviousAISignaledStop) {
-        addMessage(`${MessageSender.Cognito} 已建议结束讨论。等待 ${MessageSender.Muse} 的回应。`, MessageSender.System, MessagePurpose.SystemNotification);
+        addMessage(`${MessageSender.Cognito} 已建議結束討論。等待 ${MessageSender.Muse} 的回應。`, MessageSender.System, MessagePurpose.SystemNotification);
       }
     } else if (retriedStepId === 'cognito-final-answer') {
       setIsInternalDiscussionActive(false);
@@ -131,7 +131,7 @@ export const useRetryLogic = ({
       if (cancelRequestRef.current) return;
 
       const finalAnswerStepIdentifier = 'cognito-final-answer';
-      addMessage(`${MessageSender.Cognito} 正在综合讨论内容，准备最终答案 (使用 ${cognitoModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
+      addMessage(`${MessageSender.Cognito} 正在綜合討論內容，準備最終答案 (使用 ${cognitoModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
 
       const finalAnswerPromptText = buildFinalAnswerPrompt(
         userInputForFlow,
@@ -157,9 +157,9 @@ export const useRetryLogic = ({
 
     } catch (error) {
       const e = error as Error;
-      if (cancelRequestRef.current || e.message === '用户取消操作') { /* User cancelled */ }
-      else if (!e.message.includes("API密钥") && !e.message.toLowerCase().includes("api key") && !(e as any).isHandled) {
-        console.error("继续讨论流程中发生错误:", error);
+      if (cancelRequestRef.current || e.message === '使用者取消操作') { /* User cancelled */ }
+      else if (!e.message.includes("API金鑰") && !e.message.toLowerCase().includes("api key") && !(e as any).isHandled) {
+        console.error("繼續討論流程中發生錯誤:", error);
       }
       setIsInternalDiscussionActive(false);
     } finally {
@@ -168,7 +168,7 @@ export const useRetryLogic = ({
         stopProcessingTimer();
       }
       if (cancelRequestRef.current && !failedStepInfo) {
-        addMessage("用户已停止AI响应。", MessageSender.System, MessagePurpose.SystemNotification);
+        addMessage("用戶已停止AI回應。", MessageSender.System, MessagePurpose.SystemNotification);
       }
       setIsInternalDiscussionActive(false);
     }
@@ -222,11 +222,11 @@ export const useRetryLogic = ({
         updatedStepToRetry.previousAISignaledStopForResume
       );
 
-      if (cancelRequestRef.current) throw new Error("用户已停止手动重试");
+      if (cancelRequestRef.current) throw new Error("用戶已停止手動重試");
       
       const notepadError = processNotepadUpdateFromAI(parsedResponseFromRetry, updatedStepToRetry.sender, addMessage);
       
-      addMessage(`[${updatedStepToRetry.sender} - ${updatedStepToRetry.stepIdentifier}] 手动重试成功。后续流程将继续。`, MessageSender.System, MessagePurpose.SystemNotification);
+      addMessage(`[${updatedStepToRetry.sender} - ${updatedStepToRetry.stepIdentifier}] 手動重試成功。後續流程將持續。`, MessageSender.System, MessagePurpose.SystemNotification);
 
       await continueDiscussionAfterSuccessfulRetry(
         { ...updatedStepToRetry, imageApiPartForFlow: updatedStepToRetry.imageApiPartForFlow },
@@ -237,7 +237,7 @@ export const useRetryLogic = ({
     } catch (error) {
       if (cancelRequestRef.current) { /* User cancelled */ }
       else {
-        console.error("手动重试失败 (已由 executeStep 处理):", error);
+        console.error("手動重試失敗 (已由 executeStep 處理):", error);
       }
       
       if (!cancelRequestRef.current || failedStepInfo) {
@@ -246,7 +246,7 @@ export const useRetryLogic = ({
       }
       setIsInternalDiscussionActive(false);
       if (cancelRequestRef.current && !failedStepInfo) {
-        addMessage("用户已停止手动重试。", MessageSender.System, MessagePurpose.SystemNotification);
+        addMessage("用戶已停止手動重試。", MessageSender.System, MessagePurpose.SystemNotification);
       }
     }
   }, [
