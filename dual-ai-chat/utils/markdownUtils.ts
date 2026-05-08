@@ -55,6 +55,6 @@ export const renderMarkdown = (text: string): string => {
     return cleanHtml;
   } catch (e) {
     console.error("Markdown parsing error:", e);
-    return `<p><em>Markdown parsing error (内容解析出错)</em></p><pre>${DOMPurify.sanitize(text)}</pre>`;
+    return `<p><em>Markdown parsing error (內容解析出錯)</em></p><pre>${DOMPurify.sanitize(text)}</pre>`;
   }
 };
