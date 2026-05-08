@@ -109,11 +109,11 @@ const Notepad: React.FC<NotepadProps> = ({
            <div className="p-2 bg-sky-50 rounded-lg text-sky-600">
               <FileText size={20} />
            </div>
-           <h2 className="text-base font-bold text-slate-700">记事本</h2>
+           <h2 className="text-base font-bold text-slate-700">記事本</h2>
         </div>
         
         <div className="flex items-center space-x-1">
-          <button onClick={onUndo} disabled={!canUndo || isLoading} className={toolbarBtnClass} title="撤销">
+          <button onClick={onUndo} disabled={!canUndo || isLoading} className={toolbarBtnClass} title="撤銷">
             <Undo2 size={18} />
           </button>
           <button onClick={onRedo} disabled={!canRedo || isLoading} className={toolbarBtnClass} title="重做">
@@ -121,10 +121,10 @@ const Notepad: React.FC<NotepadProps> = ({
           </button>
           <div className="w-px h-5 bg-slate-200 mx-2"></div>
           
-          <button onClick={() => setViewMode('edit')} className={viewMode === 'edit' ? activeBtnClass : toolbarBtnClass} title="编辑源码">
+          <button onClick={() => setViewMode('edit')} className={viewMode === 'edit' ? activeBtnClass : toolbarBtnClass} title="編輯原始碼">
              <Code size={18} />
           </button>
-          <button onClick={() => setViewMode('preview')} className={viewMode === 'preview' ? activeBtnClass : toolbarBtnClass} title="预览 Markdown">
+          <button onClick={() => setViewMode('preview')} className={viewMode === 'preview' ? activeBtnClass : toolbarBtnClass} title="預覽 Markdown">
              <Eye size={18} />
           </button>
           <button onClick={() => setViewMode('diff')} className={viewMode === 'diff' ? activeBtnClass : toolbarBtnClass} title="查看变更对比">
@@ -133,10 +133,10 @@ const Notepad: React.FC<NotepadProps> = ({
           
           <div className="w-px h-5 bg-slate-200 mx-2"></div>
           
-          <button onClick={handleCopyNotepad} className={toolbarBtnClass} title="复制内容">
+          <button onClick={handleCopyNotepad} className={toolbarBtnClass} title="複製內容">
             {isCopied ? <Check size={18} className="text-green-500" /> : <Copy size={18} />}
           </button>
-          <button onClick={onToggleFullscreen} className={toolbarBtnClass} title={isNotepadFullscreen ? "退出全屏" : "全屏"}>
+          <button onClick={onToggleFullscreen} className={toolbarBtnClass} title={isNotepadFullscreen ? "退出全螢幕" : "全螢幕"}>
              {isNotepadFullscreen ? <Minimize size={18} /> : <Maximize size={18} />}
           </button>
         </div>
@@ -162,7 +162,7 @@ const Notepad: React.FC<NotepadProps> = ({
             onBlur={handleBlur}
             onKeyDown={handleKeyDown}
             disabled={isLoading}
-            placeholder="记事本内容..."
+            placeholder="記事本內容..."
             className="w-full h-full p-6 text-slate-700 font-mono text-base leading-7 bg-slate-50/30 resize-none outline-none focus:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed custom-scrollbar"
             spellCheck={false}
           />
@@ -176,7 +176,7 @@ const Notepad: React.FC<NotepadProps> = ({
                 </h3>
                 {content === previousContent ? (
                   <div className="text-center py-10 text-slate-400 italic">
-                     没有检测到变更
+                     沒有偵測到變更
                   </div>
                 ) : (
                   <div className="text-sm font-mono overflow-x-auto">
