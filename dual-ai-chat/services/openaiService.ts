@@ -88,7 +88,7 @@ export const generateOpenAiResponse = async (
       const errorMessage =
         errorBody?.error?.message ||
         response.statusText ||
-        `请求失败，状态码: ${response.status}`;
+        `請求失敗，狀態碼: ${response.status}`;
         
       let errorType = "OpenAI API error";
       if (response.status === 401 || response.status === 403) {
@@ -103,8 +103,8 @@ export const generateOpenAiResponse = async (
     const data = await response.json();
 
     if (!data.choices || data.choices.length === 0 || !data.choices[0].message || !data.choices[0].message.content) {
-      console.error("OpenAI API: 无效的响应结构", data);
-      return { text: "AI响应格式无效。", durationMs, error: "Invalid response structure" };
+      console.error("OpenAI API: 無效的回應結構", data);
+      return { text: "AI回應格式無效。", durationMs, error: "Invalid response structure" };
     }
 
     return { text: data.choices[0].message.content, durationMs };
@@ -112,15 +112,15 @@ export const generateOpenAiResponse = async (
   } catch (error) {
     if (error instanceof Error && (error.name === 'AbortError' || error.message.includes('Aborted'))) {
       const durationMs = performance.now() - startTime;
-      return { text: "用户取消操作", durationMs, error: "AbortError" };
+      return { text: "使用者取消操作", durationMs, error: "AbortError" };
     }
 
-    console.error("调用OpenAI API时出错:", error);
+    console.error("呼叫OpenAI API時出錯:", error);
     const durationMs = performance.now() - startTime;
-    let errorMessage = "与AI通信时发生未知错误。";
+    let errorMessage = "與AI通訊時發生未知錯誤。";
     let errorType = "Unknown AI error";
     if (error instanceof Error) {
-      errorMessage = `与AI通信时出错: ${error.message}`;
+      errorMessage = `與AI通信時出錯: ${error.message}`;
       errorType = error.name;
     }
     return { text: errorMessage, durationMs, error: errorType };
