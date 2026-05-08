@@ -79,7 +79,7 @@ export const applyNotepadModifications = (currentContent: string, modifications:
         }
 
         if (startLineIndex === -1) {
-            errors.push(`操作 ${actionNum} ("append_to_section") 失败: 未找到标题 "${mod.header}"。`);
+            errors.push(`操作 ${actionNum} ("append_to_section") 失敗: 未找到標題 "${mod.header}"。`);
             break;
         }
 
