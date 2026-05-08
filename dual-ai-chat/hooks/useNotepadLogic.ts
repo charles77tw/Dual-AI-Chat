@@ -59,7 +59,7 @@ export const useNotepadLogic = (initialContent: string = INITIAL_NOTEPAD_CONTENT
       _addHistoryEntry(newContent, sender);
       
       if (applyErrors.length > 0) {
-        const errorText = `[系统] ${sender} 的部分记事本修改操作未成功执行:\n- ${applyErrors.join('\n- ')}`;
+        const errorText = `[系统] ${sender} 的部分記事本修改操作未成功執行:\n- ${applyErrors.join('\n- ')}`;
         addSystemMessage(errorText, MessageSender.System, MessagePurpose.SystemNotification);
         aiFeedbackMsg = `[System Error] Notepad update failed: ${applyErrors.join('; ')}`;
       }
@@ -67,7 +67,7 @@ export const useNotepadLogic = (initialContent: string = INITIAL_NOTEPAD_CONTENT
     
     if (update.error) { 
       addSystemMessage(
-        `[系统] ${sender} 尝试修改记事本时遇到问题: ${update.error}`,
+        `[系统] ${sender} 嘗試修改記事本時遇到問題: ${update.error}`,
         MessageSender.System,
         MessagePurpose.SystemNotification
       );
