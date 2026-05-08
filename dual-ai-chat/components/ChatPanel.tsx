@@ -109,7 +109,7 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
                   isInternalDiscussionActive ? (
                     <>
                       <span>
-                        内部讨论: 第 {currentDiscussionTurn + 1} 轮
+                        內部討論: 第 {currentDiscussionTurn + 1} 輪
                         {discussionMode === DiscussionMode.FixedTurns && ` / ${manualFixedTurns}`}
                       </span>
                       {currentTotalProcessingTimeMs > 0 && (
@@ -127,7 +127,7 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
                   )
                 ) : (
                   <span>
-                    {currentTotalProcessingTimeMs > 0 && `上次耗时: ${(currentTotalProcessingTimeMs / 1000).toFixed(2)}s`}
+                    {currentTotalProcessingTimeMs > 0 && `上次耗時: ${(currentTotalProcessingTimeMs / 1000).toFixed(2)}s`}
                   </span>
                 )}
              </div>
