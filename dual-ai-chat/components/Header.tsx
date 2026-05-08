@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({
         </div>
         <div>
           <h1 className="text-lg md:text-xl font-bold text-slate-800 tracking-tight leading-tight">Dual AI Chat</h1>
-          <p className="text-[10px] text-slate-500 font-bold tracking-widest uppercase hidden sm:block">协作智能</p>
+          <p className="text-[10px] text-slate-500 font-bold tracking-widest uppercase hidden sm:block">協作智能</p>
         </div>
       </div>
 
@@ -101,7 +101,7 @@ const Header: React.FC<HeaderProps> = ({
           </button>
           <button onClick={openSettingsModal}
             className="p-2 md:p-2.5 text-slate-400 hover:text-sky-600 hover:bg-sky-50 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-100 active:scale-95"
-            aria-label="设置" title="设置" disabled={isLoading && !cancelRequestRef.current && !failedStepInfo}>
+            aria-label="設置" title="設置" disabled={isLoading && !cancelRequestRef.current && !failedStepInfo}>
             <Settings size={18} className="md:w-5 md:h-5" />
           </button>
         </div>
