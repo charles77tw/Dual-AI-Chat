@@ -138,9 +138,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
   const tabs: { id: SettingsTab; label: string; icon: React.ElementType }[] = [
     { id: 'model', label: '模型', icon: Cpu },
-    { id: 'interface', label: '界面', icon: Monitor },
+    { id: 'interface', label: '介面', icon: Monitor },
     { id: 'key', label: 'Key', icon: KeyRound },
-    { id: 'about', label: '关于', icon: Info },
+    { id: 'about', label: '關於', icon: Info },
   ];
 
   const renderTabContent = () => {
@@ -250,18 +250,18 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
             <div className="flex items-center justify-between px-4 py-3 md:px-5 md:py-5 flex-shrink-0">
                  <div className="hidden md:flex font-bold text-slate-800 items-center gap-2 text-lg">
                     <SettingsIcon size={20} className="text-slate-500" />
-                    设置
+                    設定
                  </div>
                  {/* Mobile Close Button */}
                  <button 
                     ref={closeButtonRef}
                     onClick={onClose} 
                     className="md:hidden p-2 rounded-md hover:bg-slate-200 text-slate-500 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500"
-                    aria-label="关闭设置"
+                    aria-label="關閉設定"
                  >
                     <X size={20} strokeWidth={2} />
                  </button>
-                 <span className="md:hidden font-semibold text-slate-800">设置</span>
+                 <span className="md:hidden font-semibold text-slate-800">設定</span>
                  <div className="w-8 md:hidden"></div>
             </div>
             
@@ -302,7 +302,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 <button 
                     onClick={onClose} 
                     className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500"
-                    aria-label="关闭"
+                    aria-label="關閉"
                 >
                     <X size={24} strokeWidth={2} />
                 </button>
