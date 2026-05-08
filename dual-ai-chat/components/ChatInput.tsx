@@ -51,7 +51,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading, isApiKe
     if (file && ACCEPTED_IMAGE_TYPES.includes(file.type)) {
       setSelectedImage(file);
     } else if (file) {
-      alert('不支持的文件类型。请使用 JPG, PNG, GIF 或 WEBP。');
+      alert('不支援的文件類型。請使用 JPG, PNG, GIF 或 WEBP。');
       setSelectedImage(null);
     } else {
       setSelectedImage(null);
@@ -128,7 +128,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading, isApiKe
             <div className="flex gap-2 overflow-x-auto pb-2 px-1 mb-1 custom-scrollbar">
                 <div className="relative inline-block w-fit group animate-in fade-in zoom-in-95 duration-200">
                     <div className="relative rounded-xl overflow-hidden border border-slate-200 w-16 h-16 bg-slate-50 shadow-sm">
-                        <img src={imagePreviewUrl} alt="预览" className="w-full h-full object-cover" />
+                        <img src={imagePreviewUrl} alt="預覽" className="w-full h-full object-cover" />
                         <button
                             onClick={removeImage}
                             className="absolute top-0.5 right-0.5 bg-black/60 hover:bg-black/80 text-white rounded-full p-0.5 transition-colors backdrop-blur-sm opacity-0 group-hover:opacity-100"
@@ -153,7 +153,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading, isApiKe
           onDrop={handleDrop}
           onDragOver={(e) => { e.preventDefault(); setIsDraggingOver(true); }}
           onDragLeave={(e) => { e.preventDefault(); setIsDraggingOver(false); }}
-          placeholder={isApiKeyMissing ? "缺少 API 密钥" : "给 Dual AI 发送消息..."}
+          placeholder={isApiKeyMissing ? "缺少 API 金鑰" : "給 Dual AI 發送訊息..."}
           rows={1}
           className="w-full bg-transparent border-0 focus:ring-0 text-slate-700 placeholder-slate-400 px-1 py-1 resize-none max-h-[200px] min-h-[24px] text-base leading-relaxed custom-scrollbar outline-none"
           disabled={isLoading || isApiKeyMissing}
@@ -166,7 +166,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading, isApiKe
                 <button
                     onClick={() => fileInputRef.current?.click()}
                     className="h-8 w-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-200"
-                    title="附加图片"
+                    title="附加圖片"
                     disabled={isLoading || isApiKeyMissing}
                 >
                     <Plus size={20} strokeWidth={2} />
@@ -185,7 +185,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading, isApiKe
                             : 'bg-sky-600 hover:bg-sky-700 text-white disabled:bg-slate-100 disabled:text-slate-300 disabled:shadow-none focus:ring-sky-200'
                         }
                     `}
-                    title={isLoading ? "停止生成" : "发送消息"}
+                    title={isLoading ? "停止生成" : "發送訊息"}
                 >
                     {isLoading ? <IconStop size={12} /> : <ArrowUp size={18} strokeWidth={2.5} />}
                 </button>
@@ -197,7 +197,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading, isApiKe
       {isApiKeyMissing && (
         <div className="text-center mt-2 animate-in fade-in slide-in-from-bottom-2">
            <p className="text-[10px] text-slate-400 bg-white/50 inline-block px-2 py-0.5 rounded-full border border-slate-100">
-              请在设置中配置 API 密钥以开始。
+              請在設定中配置 API 金鑰以開始。
            </p>
         </div>
       )}
