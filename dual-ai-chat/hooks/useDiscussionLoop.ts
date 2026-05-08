@@ -59,7 +59,7 @@ export const useDiscussionLoop = ({
       // --- Muse Turn ---
       if (!(params.skipMuseInFirstTurn && turn === params.startTurn)) {
         const museStepIdentifier = `muse-reply-to-cognito-turn-${turn}`;
-        addMessage(`${MessageSender.Muse} 正在回应 ${MessageSender.Cognito} (使用 ${museModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
+        addMessage(`${MessageSender.Muse} 正在回應 ${MessageSender.Cognito} (使用 ${museModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
 
         const musePromptText = buildDiscussionTurnPrompt(
           params.userInput,
@@ -90,11 +90,11 @@ export const useDiscussionLoop = ({
 
         if (discussionMode === DiscussionMode.AiDriven) {
           if (localPreviousAISignaledStop && signalFromCognitoBeforeMuse) {
-            addMessage(`双方AI (${MessageSender.Cognito} 和 ${MessageSender.Muse}) 已同意结束讨论。`, MessageSender.System, MessagePurpose.SystemNotification);
+            addMessage(`雙方AI (${MessageSender.Cognito} 和 ${MessageSender.Muse}) 已同意結束討論。`, MessageSender.System, MessagePurpose.SystemNotification);
             setIsInternalDiscussionActive(false); 
             break;
           } else if (localPreviousAISignaledStop) {
-            addMessage(`${MessageSender.Muse} 已建议结束讨论。等待 ${MessageSender.Cognito} 的回应。`, MessageSender.System, MessagePurpose.SystemNotification);
+            addMessage(`${MessageSender.Muse} 已建議結束討論。等待 ${MessageSender.Cognito} 的回應。`, MessageSender.System, MessagePurpose.SystemNotification);
           }
         }
       }
@@ -118,7 +118,7 @@ export const useDiscussionLoop = ({
 
       // --- Cognito Turn ---
       const cognitoReplyStepIdentifier = `cognito-reply-to-muse-turn-${turn}`;
-      addMessage(`${MessageSender.Cognito} 正在回应 ${MessageSender.Muse} (使用 ${cognitoModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
+      addMessage(`${MessageSender.Cognito} 正在回應 ${MessageSender.Muse} (使用 ${cognitoModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
 
       const cognitoReplyPromptText = buildDiscussionTurnPrompt(
         params.userInput,
@@ -149,11 +149,11 @@ export const useDiscussionLoop = ({
 
       if (discussionMode === DiscussionMode.AiDriven) {
         if (localPreviousAISignaledStop && signalFromMuseBeforeCognito) {
-          addMessage(`双方AI (${MessageSender.Muse} 和 ${MessageSender.Cognito}) 已同意结束讨论。`, MessageSender.System, MessagePurpose.SystemNotification);
+          addMessage(`双方AI (${MessageSender.Muse} 和 ${MessageSender.Cognito}) 已同意結束討論。`, MessageSender.System, MessagePurpose.SystemNotification);
           setIsInternalDiscussionActive(false); 
           break;
         } else if (localPreviousAISignaledStop) {
-          addMessage(`${MessageSender.Cognito} 已建议结束讨论。等待 ${MessageSender.Muse} 的回应。`, MessageSender.System, MessagePurpose.SystemNotification);
+          addMessage(`${MessageSender.Cognito} 已建議結束討論。等待 ${MessageSender.Muse} 的回應。`, MessageSender.System, MessagePurpose.SystemNotification);
         }
       }
     }
