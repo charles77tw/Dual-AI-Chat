@@ -26,7 +26,7 @@ ${imageInstruction}
 1. Analyze the user's query logically.
 2. Provide your initial thoughts, factual breakdown, or solution.
 3. Invite Muse to critique or expand on your points.
-**Output Language:** Chinese (Simplified).
+**Output Language:** Chinese (Traditional).
 
 ${commonInstructions}`;
 };
@@ -68,7 +68,7 @@ ${discussionLog.join("\n")}
 Reply to ${previousSpeaker}. Continue the rigorous discussion.
 - If you disagree, explain why constructively.
 - If you agree, add value or nuance.
-**Output Language:** Chinese (Simplified).
+**Output Language:** Chinese (Traditional).
 **Tone:** Constructive & Concise.
 
 ${commonInstructions}`;
@@ -98,7 +98,7 @@ ${discussionLog.join("\n")}
 1. Synthesize the entire discussion into a **comprehensive Final Answer** for the user.
 2. **IMPORTANT:** You MUST update the Notepad with this Final Answer using the "replace_all" action in your JSON. The notepad is the primary delivery method for the final answer.
 3. Your spoken reply (outside JSON) should be very brief (e.g., "I have updated the notepad with the final answer.").
-**Output Language:** Chinese (Simplified).
+**Output Language:** Chinese (Traditional).
 
 ${commonInstructions}`;
 };
