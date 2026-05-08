@@ -67,8 +67,8 @@ export const useChatProcessing = ({
         const base64Data = await fileToBase64(imageFile);
         geminiImageApiPart = { inlineData: { mimeType: imageFile.type, data: base64Data } };
       } catch (error) {
-        console.error("图片处理失败:", error);
-        addMessage("图片处理失败，请重试。", MessageSender.System, MessagePurpose.SystemNotification);
+        console.error("圖片處理失敗:", error);
+        addMessage("圖片處理失敗，請重試。", MessageSender.System, MessagePurpose.SystemNotification);
         setIsLoading(false);
         stopProcessingTimer();
         if (userImageForDisplay?.dataUrl.startsWith('blob:')) URL.revokeObjectURL(userImageForDisplay.dataUrl);
@@ -81,11 +81,11 @@ export const useChatProcessing = ({
     let currentLocalDiscussionLog: string[] = [];
     let lastTurnTextForLog = "";
 
-    const imageInstructionForAI = geminiImageApiPart ? "用户还提供了一张图片。请在您的分析和回复中同时考虑此图片和文本查询。" : "";
+    const imageInstructionForAI = geminiImageApiPart ? "用戶還提供了一張圖片。請在您的分析和回覆中同時考慮此圖片和文字查詢。" : "";
 
     try {
       const cognitoInitialStepIdentifier = 'cognito-initial-to-muse';
-      addMessage(`${MessageSender.Cognito} 正在为 ${MessageSender.Muse} 准备第一个观点 (使用 ${cognitoModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
+      addMessage(`${MessageSender.Cognito} 正在為 ${MessageSender.Muse} 準備第一個觀點 (使用 ${cognitoModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
 
       const cognitoPromptText = buildCognitoInitialPrompt(
         userInput,
@@ -98,7 +98,7 @@ export const useChatProcessing = ({
         cognitoInitialStepIdentifier, cognitoPromptText, cognitoModelDetails, MessageSender.Cognito, MessagePurpose.CognitoToMuse, geminiImageApiPart,
         userInput, geminiImageApiPart, []
       );
-      if (cancelRequestRef.current) throw new Error("用户取消操作");
+      if (cancelRequestRef.current) throw new Error("使用者取消操作");
       const notepadError = processNotepadUpdateFromAI(cognitoParsedResponse, MessageSender.Cognito, addMessage);
       lastTurnTextForLog = cognitoParsedResponse.spokenText;
       currentLocalDiscussionLog.push(`${MessageSender.Cognito}: ${lastTurnTextForLog}`);
@@ -111,7 +111,7 @@ export const useChatProcessing = ({
       setCurrentDiscussionTurn(0);
 
       let previousAISignaledStop = discussionMode === DiscussionMode.AiDriven && (cognitoParsedResponse.discussionShouldEnd || false);
-      if (previousAISignaledStop) addMessage(`${MessageSender.Cognito} 已建议结束讨论。等待 ${MessageSender.Muse} 的回应。`, MessageSender.System, MessagePurpose.SystemNotification);
+      if (previousAISignaledStop) addMessage(`${MessageSender.Cognito} 已建議結束討論。等待 ${MessageSender.Muse} 的回應。`, MessageSender.System, MessagePurpose.SystemNotification);
 
       // Run Discussion Loop
       const loopResult = await runDiscussionLoop({
@@ -128,10 +128,10 @@ export const useChatProcessing = ({
       const finalTurnForStats = loopResult.finalTurnForStats;
       const resultingLog = loopResult.localDiscussionLog;
 
-      if (cancelRequestRef.current) throw new Error("用户取消操作");
+      if (cancelRequestRef.current) throw new Error("使用者取消操作");
 
       const finalAnswerStepIdentifier = 'cognito-final-answer';
-      addMessage(`${MessageSender.Cognito} 正在综合讨论内容，准备最终答案 (使用 ${cognitoModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
+      addMessage(`${MessageSender.Cognito} 正在綜合討論內容，準備最終答案 (使用 ${cognitoModelDetails.name})...`, MessageSender.System, MessagePurpose.SystemNotification);
 
       const finalAnswerPromptText = buildFinalAnswerPrompt(
         userInput,
@@ -145,7 +145,7 @@ export const useChatProcessing = ({
         finalAnswerStepIdentifier, finalAnswerPromptText, cognitoModelDetails, MessageSender.Cognito, MessagePurpose.FinalResponse, geminiImageApiPart,
         userInput, geminiImageApiPart, [...resultingLog]
       );
-      if (cancelRequestRef.current) throw new Error("用户取消操作");
+      if (cancelRequestRef.current) throw new Error("使用者取消操作");
       processNotepadUpdateFromAI(finalAnswerParsedResponse, MessageSender.Cognito, addMessage);
 
       // Successfully completed the flow
@@ -157,10 +157,10 @@ export const useChatProcessing = ({
 
     } catch (error) {
       const e = error as Error;
-      if (cancelRequestRef.current || e.message === '用户取消操作') { /* User cancelled, handled by finally */ }
-      else if (!e.message.includes("API密钥") && !e.message.toLowerCase().includes("api key") && !(e as any).isHandled) {
-        console.error("聊天流程中发生错误:", error);
-        addMessage(`错误: ${e.message}`, MessageSender.System, MessagePurpose.SystemNotification);
+      if (cancelRequestRef.current || e.message === '使用者取消操作') { /* User cancelled, handled by finally */ }
+      else if (!e.message.includes("API金鑰") && !e.message.toLowerCase().includes("api key") && !(e as any).isHandled) {
+        console.error("聊天流程發生錯誤:", error);
+        addMessage(`錯誤: ${e.message}`, MessageSender.System, MessagePurpose.SystemNotification);
       }
       setIsInternalDiscussionActive(false);
     } finally {
@@ -177,7 +177,7 @@ export const useChatProcessing = ({
         URL.revokeObjectURL(userImageForDisplay.dataUrl);
       }
       if (cancelRequestRef.current && !failedStepInfo) {
-        addMessage("用户已停止AI响应。", MessageSender.System, MessagePurpose.SystemNotification);
+        addMessage("用戶已停止AI回應。", MessageSender.System, MessagePurpose.SystemNotification);
       }
     }
   }, [
