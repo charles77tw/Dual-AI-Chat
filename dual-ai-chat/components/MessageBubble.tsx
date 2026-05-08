@@ -9,11 +9,11 @@ const isSystemErrorMessage = (messageText: string, purpose: MessagePurpose): boo
   const lowerText = messageText.toLowerCase();
   return (
     lowerText.includes("error") ||
-    lowerText.includes("错误") ||
+    lowerText.includes("錯誤") ||
     lowerText.includes("警告") ||
     lowerText.includes("critical") ||
-    lowerText.includes("严重") ||
-    lowerText.includes("失败")
+    lowerText.includes("嚴重") ||
+    lowerText.includes("失敗")
   );
 };
 
@@ -39,11 +39,11 @@ const Avatar: React.FC<AvatarProps> = ({ sender }) => {
 const getPurposeBadge = (purpose: MessagePurpose): { text: string, className: string } | null => {
   switch (purpose) {
     case MessagePurpose.CognitoToMuse:
-      return { text: "逻辑 > 创意", className: "text-teal-600 bg-teal-50 border-teal-100" };
+      return { text: "邏輯 > 創意", className: "text-teal-600 bg-teal-50 border-teal-100" };
     case MessagePurpose.MuseToCognito:
-      return { text: "创意 > 逻辑", className: "text-fuchsia-600 bg-fuchsia-50 border-fuchsia-100" };
+      return { text: "創意 > 邏輯", className: "text-fuchsia-600 bg-fuchsia-50 border-fuchsia-100" };
     case MessagePurpose.FinalResponse:
-      return { text: "最终答案", className: "text-indigo-600 bg-indigo-50 border-indigo-100 font-bold" };
+      return { text: "最終答案", className: "text-indigo-600 bg-indigo-50 border-indigo-100 font-bold" };
     default:
       return null;
   }
@@ -65,15 +65,15 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
     const isError = isSystemErrorMessage(messageText, purpose);
     
     // Check for new structured welcome message or legacy message
-    const isWelcome = messageText.includes("Dual AI Chat 已就绪") || messageText.includes("欢迎使用Dual AI Chat");
+    const isWelcome = messageText.includes("Dual AI Chat 已就緒") || messageText.includes("歡迎使用Dual AI Chat");
 
     if (isWelcome) {
       // Parse structured text for the new layout
-      // Format: "Dual AI Chat 已就绪\n模式：[Info]\nCognito：[Name]\nMuse：[Name]"
+      // Format: "Dual AI Chat 已就緒\n模式：[Info]\nCognito：[Name]\nMuse：[Name]"
       const lines = messageText.split('\n');
       
       // If matches new format with enough lines, render card
-      if (lines.length >= 4 && lines[0].includes("已就绪")) {
+      if (lines.length >= 4 && lines[0].includes("已就緒")) {
           const modeStr = lines[1].split('：')[1] || lines[1];
           const cognitoStr = lines[2].split('：')[1] || lines[2];
           const museStr = lines[3].split('：')[1] || lines[3];
@@ -84,8 +84,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
                     {/* Card Header */}
                     <div className="flex items-center gap-3 mb-5 pb-4 border-b border-slate-100">
                         <div>
-                            <h3 className="font-bold text-slate-800 text-base">Dual AI Chat 已就绪</h3>
-                            <p className="text-[10px] text-slate-500 font-medium">系统初始化完成</p>
+                            <h3 className="font-bold text-slate-800 text-base">Dual AI Chat 已就緒</h3>
+                            <p className="text-[10px] text-slate-500 font-medium">系統初始化完成</p>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
                         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex flex-col gap-1.5 transition-colors hover:border-slate-200">
                              <div className="flex items-center gap-1.5 text-slate-400">
                                 <Zap size={12} className="text-amber-500 fill-amber-500" />
-                                <span className="text-[10px] font-bold uppercase tracking-wider">运行模式</span>
+                                <span className="text-[10px] font-bold uppercase tracking-wider">運作模式</span>
                              </div>
                              <div className="font-semibold text-slate-700 text-sm truncate" title={modeStr}>
                                 {modeStr}
@@ -106,7 +106,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
                         <div className="bg-teal-50/40 rounded-xl p-3 border border-teal-100/60 flex flex-col gap-1.5 transition-colors hover:border-teal-200/60">
                              <div className="flex items-center gap-1.5 text-teal-600/70">
                                 <Cpu size={12} />
-                                <span className="text-[10px] font-bold uppercase tracking-wider">逻辑模型</span>
+                                <span className="text-[10px] font-bold uppercase tracking-wider">邏輯模型</span>
                              </div>
                              <div className="font-semibold text-teal-800 text-sm truncate" title={cognitoStr}>
                                 {cognitoStr}
@@ -117,7 +117,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
                         <div className="bg-fuchsia-50/40 rounded-xl p-3 border border-fuchsia-100/60 flex flex-col gap-1.5 transition-colors hover:border-fuchsia-200/60">
                              <div className="flex items-center gap-1.5 text-fuchsia-600/70">
                                 <Sparkles size={12} />
-                                <span className="text-[10px] font-bold uppercase tracking-wider">创意模型</span>
+                                <span className="text-[10px] font-bold uppercase tracking-wider">創意模型</span>
                              </div>
                              <div className="font-semibold text-fuchsia-800 text-sm truncate" title={museStr}>
                                 {museStr}
@@ -150,7 +150,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
              <button
                onClick={() => onManualRetry(failedStepPayloadForThisMessage)}
                className="ml-3 p-1 hover:bg-red-100 rounded-full text-red-700 transition-colors"
-               title="重试"
+               title="重試"
              >
                <RefreshCw size={12} />
              </button>
@@ -219,7 +219,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
                  <button 
                     onClick={handleCopy} 
                     className="text-slate-400 hover:text-sky-600 transition-colors opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
-                    title="复制"
+                    title="複製"
                  >
                     {isCopied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
                  </button>
@@ -232,7 +232,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
            <button 
               onClick={handleCopy} 
               className="absolute top-2 right-2 text-blue-200 hover:text-white transition-colors opacity-100 sm:opacity-0 sm:group-hover:opacity-100 p-1"
-              title="复制"
+              title="複製"
            >
               {isCopied ? <Check size={14} /> : <Copy size={14} />}
            </button>
@@ -241,7 +241,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
         <div className={`px-4 py-3 ${isUser ? 'text-base' : 'text-sm'}`}>
           {image && (
              <div className="mb-3">
-               <img src={image.dataUrl} alt="上传的附件" className="max-w-full max-h-60 rounded-lg object-contain bg-black/5" />
+               <img src={image.dataUrl} alt="上傳的附件" className="max-w-full max-h-60 rounded-lg object-contain bg-black/5" />
              </div>
           )}
 
@@ -250,7 +250,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, onManualRetry, f
             <details className="mb-3 rounded-lg bg-slate-50 border border-slate-100 overflow-hidden text-xs group/thoughts">
                 <summary className="px-3 py-2 cursor-pointer font-medium text-slate-500 hover:bg-slate-100 select-none flex items-center gap-2 transition-colors">
                    <Brain size={14} className="text-slate-400 group-hover/thoughts:text-sky-500" /> 
-                   <span>思考过程</span>
+                   <span>思考過程</span>
                 </summary>
                 <div className="px-3 pb-3 pt-1 text-slate-600 whitespace-pre-wrap leading-relaxed border-t border-slate-100 font-mono bg-white/50">
                     {thoughts}
